@@ -19,7 +19,7 @@ class SingleLinkedList:
         toPrint = ""
         curr = self.head
         
-        while curr is not None: #Why not curr.next != None? Because, then we our curr will be at tail but we don't print its value
+        while curr is not None: #Why not curr.next != None? Because, then we our curr will be at tail but we won't print its value
             toPrint += f"{curr.value}, "
             curr = curr.next
         return toPrint
@@ -40,8 +40,8 @@ class SingleLinkedList:
         
         hasItem = self.search(value)
         
-        # If removing head    
         if hasItem:
+            # If removing head
             if value == self.head.value:
                 removed = self.head
                 self.head = self.head.next
@@ -60,7 +60,7 @@ class SingleLinkedList:
             # Removing from middle
                 # Find the node right before
             rightBefore = self.head
-            while rightBefore.next.value != value and rightBefore.next is not None:
+            while rightBefore.next.value != value : # We don't need to check if .next is None or not, since we already know the item exists and is not the tail.
                 rightBefore = rightBefore.next
             
             removed = rightBefore.next
@@ -82,7 +82,7 @@ class SingleLinkedList:
     def reverse(self):
         """
         Algo: Initialize prev as None, as the new tail (old head)'s 'next' pointer will point to this.
-        Then save curr.next to a temp variable and move curr and prev one step to the right, while 
+        Then save curr.next to a temp variable (next) and move curr and prev one step to the right, while 
         changing curr.next to point backwards i.e. to prev. Keep doing it until we reach the end.
         """
         prev = None
