@@ -47,7 +47,7 @@ class BinarySearchTree:
             return True
         else:
             if value < root.value:
-                return self.search(value, root.left) # spent an hour debugging because I did not have the return statemeny here.
+                return self.search(value, root.left) # spent an hour debugging because I did not have the return statement here.
             else:
                 return self.search(value, root.right)
 
