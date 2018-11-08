@@ -51,8 +51,19 @@ class BinarySearchTree:
             else:
                 return self.search(value, root.right)
 
-    def remove(self, value):
-        pass
-    def findParent(self, value):
-        pass
+    def findParent(self, value, root, prev = None):
+        # Initial check to see if we have more than 1 node
+        if self.count <= 1:
+            return None
+        
+        if root == None: # base case for recursion. means we reached leaf node
+            return
+        if root.value == value:
+            return prev
+        else:
+            if value < root.value:
+                return self.findParent(value, root.left, root)
+            else:
+                return self.findParent(value, root.right, root)
+
     

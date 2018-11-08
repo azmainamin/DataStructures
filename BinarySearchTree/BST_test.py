@@ -53,13 +53,53 @@ class TestingBST(unittest.TestCase):
         res = bst.search(15, bst.root)
         self.assertTrue(res)
     
-    # Remove tests
 
     def test_remove_whenElemNotPresent_returnsNull(self):
         pass
 
     def test_remove_whenElemPresent_removesAndReturnsRemovedNode(self):
         pass
+
+    # Find Parent tests
+
+    def test_findParent_whenLookingAtRoot_returnsNone(self):
+        bst = BinarySearchTree()
+        bst.insert(10, bst.root)
+        bst.insert(9, bst.root)
+        bst.insert(15, bst.root)
+
+        self.assertIsNone(bst.findParent(10, bst.root))
+
+    def test_findParent_whenLookingAtLevel1_returnsRoot(self):
+        bst = BinarySearchTree()
+        bst.insert(10, bst.root)
+        bst.insert(9, bst.root)
+        bst.insert(15, bst.root)
+
+        self.assertEqual(bst.findParent(9, bst.root).value, 10)
+
+
+    def test_findParent_whenLookingAtLevel2_returnsRightParentFromLevel1(self):
+        bst = BinarySearchTree()
+        bst.insert(19, bst.root)
+        bst.insert(15, bst.root)
+        bst.insert(21, bst.root)
+        bst.insert(11, bst.root)
+        bst.insert(18, bst.root)
+
+        self.assertEqual(bst.findParent(18, bst.root).value, 15)
+
+    
+    def test_findParent_whenLookingAtLevel3_returnsRightParentFromLevel2(self):
+        bst = BinarySearchTree()
+        bst.insert(19, bst.root)
+        bst.insert(15, bst.root)
+        bst.insert(21, bst.root)
+        bst.insert(11, bst.root)
+        bst.insert(18, bst.root)
+        bst.insert(17, bst.root)
+
+        self.assertEqual(bst.findParent(17, bst.root).value, 18)
 
 if __name__ == '__main__':
     unittest.main()
